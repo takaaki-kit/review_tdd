@@ -15,7 +15,7 @@ class Menu
         if($mode === 1){
             $fizzbuzz = (new FizzBuzz($this->in->get()))->start();
             $this->out->puts($fizzbuzz);
-            $repository->register($fizzbuzz);
+            $repository->register($fizzbuzz)
         }else{
             $this->out->puts('3 Fizz');
         }
