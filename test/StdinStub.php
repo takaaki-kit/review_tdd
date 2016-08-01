@@ -4,7 +4,7 @@ class StdinStub
 {
     public function __construct($input)
     {
-        $this->input = input;
+        $this->input = $input;
     }
 
     public function get()

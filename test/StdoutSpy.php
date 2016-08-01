@@ -2,10 +2,7 @@
 
 class StdoutSpy
 {
-    public function __construct()
-    {
-        $this->buffer;
-    }
+    private $buffer;
 
     public function puts($content)
     {
