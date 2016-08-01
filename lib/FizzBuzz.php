@@ -9,7 +9,7 @@ class FizzBuzz{
 
     public function start()
     {
-        if($this->number != 0){
+        if(!$this->isMultipleOfAll()){
             if($this->isMultipleOf(15)){
                 return 'FizzBuzz';
             }
@@ -28,5 +28,10 @@ class FizzBuzz{
     private function isMultipleOf($number)
     {
         return $this->number % $number === 0;
+    }
+
+    private function isMultipleOfAll()
+    {
+        return $this->number === 0;
     }
 }
