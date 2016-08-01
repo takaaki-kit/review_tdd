@@ -9,12 +9,15 @@ class Menu
         $this->out = $out;
         $this->in = $in;
     }
+
     public function select($mode)
     {
-        $this->out->puts((new FizzBuzz($this->in->get()))->start());
-    #    if($mode == '1'){
-    #        //標準入力受け付け
-    #        print((new FizzBuzz())->start(/*受け付けた値*/)));
-    #    }
+        if($mode === 1){
+            $fizzbuzz = (new FizzBuzz($this->in->get()))->start();
+            $this->out->puts($fizzbuzz);
+            $repository->register($fizzbuzz);
+        }else{
+            $this->out->puts('3 Fizz');
+        }
     }
 }

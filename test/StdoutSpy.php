@@ -2,11 +2,11 @@
 
 class StdoutSpy
 {
-    private $buffer;
+    private $buffer = [];
 
     public function puts($content)
     {
-        $this->buffer = $content;
+        $this->buffer[] = $content;
     }
 
     public function result()
