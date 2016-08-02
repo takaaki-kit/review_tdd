@@ -36,14 +36,17 @@ class MenuTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    #public function ２が入力されたらfizzbuzzの履歴を返す()
-    #{
-    #    $spy = new StdoutSpy();
-    #    $stub = new StdinStub(3);
-    #    $menu = new Menu($spy, $stub);
-    #    $menu->select(2);
-    #    $this->assertEquals(['3 Fizz', '3 Fizz'], $spy->result());
-    #}
+    public function ２が入力されたらfizzbuzzの履歴を返す()
+    {
+        $spy = new StdoutSpy();
+        $stub = new StdinStub(3);
+        $repository = new Repository;
+        $repository->register('Fizz');
+        $repository->register('Buzz');
+        $menu = new Menu($spy, $stub, $repository);
+        $menu->select(2);
+        $this->assertEquals(['Fizz', 'Buzz'], $spy->result());
+    }
 
     /**
      * @test

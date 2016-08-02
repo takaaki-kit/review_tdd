@@ -19,7 +19,9 @@ class Menu
             $this->out->puts($fizzbuzz);
             $this->repository->register($fizzbuzz);
         }else{
-            $this->out->puts('3 Fizz');
+            foreach($this->repository->all() as $history){
+                $this->out->puts($history);
+            }
         }
     }
 }
