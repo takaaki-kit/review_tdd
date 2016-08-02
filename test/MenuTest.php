@@ -31,7 +31,7 @@ class MenuTest extends PHPUnit_Framework_TestCase
         $repository = new Repository;
         $menu = new Menu($spy, $stub, $repository);
         $menu->select(1);
-        $this->assertEquals(['Fizz'], $spy->result());
+        $this->assertEquals(['3 Fizz'], $repository->all());
     }
     /**
      * @test
@@ -41,11 +41,11 @@ class MenuTest extends PHPUnit_Framework_TestCase
         $spy = new StdoutSpy();
         $stub = new StdinStub(3);
         $repository = new Repository;
-        $repository->register('Fizz');
-        $repository->register('Buzz');
+        $repository->register('3 Fizz');
+        $repository->register('5 Buzz');
         $menu = new Menu($spy, $stub, $repository);
         $menu->select(2);
-        $this->assertEquals(['Fizz', 'Buzz'], $spy->result());
+        $this->assertEquals(['3 Fizz', '5 Buzz'], $spy->result());
     }
 
     /**

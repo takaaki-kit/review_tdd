@@ -15,9 +15,10 @@ class Menu
     public function select($mode)
     {
         if($mode === 1){
-            $fizzbuzz = (new FizzBuzz($this->in->get()))->start();
+            $input = $this->in->get();
+            $fizzbuzz = (new FizzBuzz($input))->start();
             $this->out->puts($fizzbuzz);
-            $this->repository->register($fizzbuzz);
+            $this->repository->register($input . ' ' . $fizzbuzz);
         }else{
             foreach($this->repository->all() as $history){
                 $this->out->puts($history);
