@@ -19,10 +19,12 @@ class Menu
             $fizzbuzz = (new FizzBuzz($input))->start();
             $this->out->puts($fizzbuzz);
             $this->repository->register($input . ' ' . $fizzbuzz);
-        }else{
+        }else if($mode === 2){
             foreach($this->repository->all() as $history){
                 $this->out->puts($history);
             }
+        }else{
+            $this->out->puts('Error:invalid input');
         }
     }
 }

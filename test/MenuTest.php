@@ -65,7 +65,13 @@ class MenuTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    #public function 無効な値が入力されたらエラーを返す()
-    #{
-    #}
+    public function 無効な値が入力されたらエラーを返す()
+    {
+        $spy = new StdoutSpy();
+        $repository = new Repository;
+        $menu = new Menu($spy, NULL, $repository);
+        $invalid_input = 12345;
+        $menu->select($invalid_input);
+        $this->assertEquals(['Error:invalid input'], $spy->result());
+    }
 }
