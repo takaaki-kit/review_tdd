@@ -3,6 +3,7 @@
 require_once('Menu.php');
 require_once('StdoutSpy.php');
 require_once('StdinStub.php');
+require_once('Repository.php');
 
 
 class MenuTest extends PHPUnit_Framework_TestCase
@@ -14,7 +15,8 @@ class MenuTest extends PHPUnit_Framework_TestCase
     {
         $spy = new StdoutSpy();
         $stub = new StdinStub(3);
-        $menu = new Menu($spy, $stub);
+        $repository = new Repository;
+        $menu = new Menu($spy, $stub, $repository);
         $menu->select(1);
         $this->assertEquals(['Fizz'], $spy->result());
     }
@@ -26,7 +28,8 @@ class MenuTest extends PHPUnit_Framework_TestCase
     {
         $spy = new StdoutSpy();
         $stub = new StdinStub(3);
-        $menu = new Menu($spy, $stub);
+        $repository = new Repository;
+        $menu = new Menu($spy, $stub, $repository);
         $menu->select(1);
         $this->assertEquals(['Fizz'], $spy->result());
     }

@@ -1,13 +1,15 @@
 <?php
 
 require_once('FizzBuzz.php');
+require_once('Repository.php');
 
 class Menu
 {
-    public function __construct($out, $in)
+    public function __construct($out, $in, $repository)
     {
         $this->out = $out;
         $this->in = $in;
+        $this->repository = $repository;
     }
 
     public function select($mode)
@@ -15,7 +17,7 @@ class Menu
         if($mode === 1){
             $fizzbuzz = (new FizzBuzz($this->in->get()))->start();
             $this->out->puts($fizzbuzz);
-            $repository->register($fizzbuzz)
+            $this->repository->register($fizzbuzz);
         }else{
             $this->out->puts('3 Fizz');
         }
