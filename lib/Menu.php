@@ -16,9 +16,13 @@ class Menu
     {
         if($mode === 1){
             $input = $this->in->get();
-            $fizzbuzz = (new FizzBuzz($input))->start();
-            $this->out->puts($fizzbuzz);
-            $this->repository->register($input . ' ' . $fizzbuzz);
+            if((new isIntegerValidator($input))->isPositiveInteger()){
+                $fizzbuzz = (new FizzBuzz($input))->start();
+                $this->out->puts($fizzbuzz);
+                $this->repository->register($input . ' ' . $fizzbuzz);
+            }else{
+                $this->out->puts('Error:invalid input at fizzbuzz');
+            }
         }else if($mode === 2){
             foreach($this->repository->all() as $history){
                 $this->out->puts($history);

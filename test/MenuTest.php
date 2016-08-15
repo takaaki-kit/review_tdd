@@ -24,6 +24,19 @@ class MenuTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function １が入力されたあと、正の整数以外が入力された時にエラー()
+    {
+        $invalid_fizzbuzz_input = 'a';
+        $spy = new StdoutSpy();
+        $stub = new StdinStub($invalid_fizzbuzz_input);
+        $repository = new Repository;
+        $menu = new Menu($spy, $stub, $repository);
+        $menu->select(1);
+        $this->assertEquals(['Error:invalid input at fizzbuzz'], $spy->result());
+    }
+    /**
+     * @test
+     */
     public function １が入力されたらfizzbuzzの結果を保存する()
     {
         $spy = new StdoutSpy();
