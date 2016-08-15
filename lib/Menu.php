@@ -2,6 +2,7 @@
 
 require_once('FizzBuzz.php');
 require_once('Repository.php');
+require_once('History.php');
 
 class Menu
 {
@@ -21,7 +22,7 @@ class Menu
                 $this->out->puts($fizzbuzz);
                 $this->repository->register($input . ' ' . $fizzbuzz);
             }else{
-                $this->out->puts('Error:invalid input at fizzbuzz');
+                $this->out->puts('Error:invalid input at mode 1');
             }
         }else if($mode === 2){
             foreach($this->repository->all() as $history){

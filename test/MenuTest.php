@@ -32,7 +32,7 @@ class MenuTest extends PHPUnit_Framework_TestCase
         $repository = new Repository;
         $menu = new Menu($spy, $stub, $repository);
         $menu->select(1);
-        $this->assertEquals(['Error:invalid input at fizzbuzz'], $spy->result());
+        $this->assertEquals(['Error:invalid input at mode 1'], $spy->result());
     }
     /**
      * @test
@@ -64,9 +64,17 @@ class MenuTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    #public function ３が入力されたらfizzbuzzの履歴を保存する()
-    #{
-    #}
+    public function ３が入力されたらfizzbuzzの履歴を保存する()
+    {
+        $spy = new StdoutSpy();
+        $stub = new StdinStub(3);
+        $repository = new Repository;
+        $repository->register('3 Fizz');
+        $repository->register('5 Buzz');
+        $menu = new Menu($spy, $stub, $repository);
+        $menu->select(3);
+        $this->assertEquals(['3 Fizz', '5 Buzz'], (new History())->read());
+    }
 
     /**
      * @test
