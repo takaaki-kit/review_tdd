@@ -28,6 +28,11 @@ class Menu
             foreach($this->repository->all() as $history){
                 $this->out->puts($history);
             }
+        }else if($mode === 3){
+            $history = new History();
+            foreach($this->repository->all() as $content){
+                $history->write($content);
+            }
         }else{
             $this->out->puts('Error:invalid input');
         }
