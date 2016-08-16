@@ -4,6 +4,7 @@ require_once('FizzBuzz.php');
 require_once('Repository.php');
 require_once('History.php');
 
+
 class Menu
 {
     public function __construct($out, $in, $repository)
@@ -11,6 +12,7 @@ class Menu
         $this->out = $out;
         $this->in = $in;
         $this->repository = $repository;
+        $this->history = new History();
     }
 
     public function select($mode)
@@ -29,9 +31,12 @@ class Menu
                 $this->out->puts($history);
             }
         }else if($mode === 3){
-            $history = new History();
             foreach($this->repository->all() as $content){
-                $history->write($content);
+                $this->history->write($content);
+            }
+        }else if($mode === 4){
+            foreach($this->history->read() as $content){
+                $this->out->puts($content);
             }
         }else{
             $this->out->puts('Error:invalid input');

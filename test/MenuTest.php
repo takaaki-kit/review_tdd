@@ -8,6 +8,20 @@ require_once('Repository.php');
 
 class MenuTest extends PHPUnit_Framework_TestCase
 {
+    public function setUp()
+    {
+        if(file_exists('logs/data.txt')){
+            unlink('logs/data.txt');
+        }
+    }
+
+    public function tearDown()
+    {
+        if(file_exists('logs/data.txt')){
+            unlink('logs/data.txt');
+        }
+    }
+
     /**
      * @test
      */
@@ -79,9 +93,18 @@ class MenuTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    #public function ４が入力されたら保存されたfizzbuzzの履歴を返す()
-    #{
-    #}
+    public function ４が入力されたら保存されたfizzbuzzの履歴を返す()
+    {
+        $spy = new StdoutSpy();
+        $stub = new StdinStub(3);
+        $repository = new Repository;
+        $repository->register('3 Fizz');
+        $repository->register('5 Buzz');
+        $menu = new Menu($spy, $stub, $repository);
+        $menu->select(3);
+        $menu->select(4);
+        $this->assertEquals(['3 Fizz', '5 Buzz'], $spy->result());
+    }
 
     /**
      * @test
